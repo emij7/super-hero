@@ -11,4 +11,4 @@ const PaginaLogin = () => {
     )
 }
 
-export default PaginaLogin
+export default PaginaLogin;
