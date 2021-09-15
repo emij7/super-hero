@@ -1,6 +1,8 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import Validacion from './Validacion';
+import { useHistory } from 'react-router-dom';
+
 
 const validate = values => {
   const errors = {};  //Manejar errores en los input
@@ -26,6 +28,7 @@ const FormularioSuscripcion = () => {
       Validacion(values.email, values.password)
     }
   });
+  let history = useHistory()
 
   return (
     <div>
@@ -55,7 +58,7 @@ const FormularioSuscripcion = () => {
           <div>{formik.errors.password}</div>
         ) : null}
 
-        <button type="submit">Enviar</button>
+        <button onClick={() => { history.push('/MiEquipo') }} type="submit">Enviar</button>
       </form>
     </div>
   );
