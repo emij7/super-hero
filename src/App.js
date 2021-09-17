@@ -1,17 +1,20 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import PaginaLogin from './pages/PaginaLogin';
 import MiEquipo from './pages/MiEquipo';
 import Layout from "./components/Layout";
+import { TokenProvider } from "./context/TokenContext";
 
 function App() {
   return (
     <Router>
       <Layout>
-        <Switch>
-          <Route exact path='/' component={PaginaLogin} />
-          <Route exact path='/MiEquipo' component={() => <MiEquipo autorizacion={false} />} />
-        </Switch>
+        <TokenProvider>
+          <Switch>
+            <Route exact path='/' component={PaginaLogin} />
+            <Route exact path='/miEquipo' component={() => <MiEquipo />} />
+          </Switch>
+        </TokenProvider>
       </Layout>
     </Router>
   );

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import Validacion from './Validacion';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
+import axios from 'axios';
+import TokenContext from '../context/TokenContext';
 
+const URL = 'http://challenge-react.alkemy.org/'
 
 const validate = values => {
+  /*
+  Validamos que el campo no esté vacío ni contenga una dirección de correo erronea.
+  */
   const errors = {};  //Manejar errores en los input
 
   if (!values.email) {
@@ -17,7 +22,16 @@ const validate = values => {
   }
   return errors;
 };
+
+
+
 const FormularioSuscripcion = () => {
+  const { token, setToken } = useContext(TokenContext)
+
+  let history = useHistory()
+
+  const redireccionLogin = () => history.push('/MiEquipo')
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -25,43 +39,63 @@ const FormularioSuscripcion = () => {
     },
     validate,
     onSubmit: values => {
-      Validacion(values.email, values.password)
+      peticion(values.email, values.password)
     }
   });
-  let history = useHistory()
 
-  return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="email">Email Address</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
-        ) : null}
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
-        ) : null}
+  const peticion = async (mail, pass) => {
+    //Llamado api para validar usuario y contraseña
+    await axios.post(URL, {
+      email: mail,
+      password: pass
+    })
+      .then(function (response) {
+        setToken(response.data.token)
+        localStorage.setItem('TOKEN', response.data.token)
+        redireccionLogin()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  if (!localStorage.TOKEN) {
+    return (
+      <div>
+        <form onSubmit={formik.handleSubmit}>
+          <label htmlFor="email">Email Address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <div>{formik.errors.email}</div>
+          ) : null}
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          />
+          {formik.touched.password && formik.errors.password ? (
+            <div>{formik.errors.password}</div>
+          ) : null}
 
-        <button onClick={() => { history.push('/MiEquipo') }} type="submit">Enviar</button>
-      </form>
-    </div>
-  );
+          <button type="submit">Enviar</button>
+        </form>
+        <p>{token}</p>
+      </div>
+    );
+  }
+  else {
+    return <Redirect to='/MiEquipo' />
+  }
 };
 
 export default FormularioSuscripcion
