@@ -3,18 +3,18 @@ import './App.css';
 import PaginaLogin from './pages/PaginaLogin';
 import MiEquipo from './pages/MiEquipo';
 import Layout from "./components/Layout";
-import { TokenProvider } from "./context/TokenContext";
+import 'bootstrap/dist/css/bootstrap.css';
+import Buscador from "./pages/Buscador";
 
 function App() {
   return (
     <Router>
       <Layout>
-        <TokenProvider>
-          <Switch>
-            <Route exact path='/' component={PaginaLogin} />
-            <Route exact path='/miEquipo' component={() => <MiEquipo />} />
-          </Switch>
-        </TokenProvider>
+        <Switch>
+          <Route exact path='/' component={PaginaLogin} />
+          <Route exact path='/miEquipo' component={MiEquipo} />
+          <Route exact path='/busqueda' component={Buscador} />
+        </Switch>
       </Layout>
     </Router>
   );

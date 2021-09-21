@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useHistory, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import TokenContext from '../context/TokenContext';
+import Alert from './Alert';
 
 const URL = 'http://challenge-react.alkemy.org/'
 
@@ -26,9 +26,9 @@ const validate = values => {
 
 
 const FormularioSuscripcion = () => {
-  const { token, setToken } = useContext(TokenContext)
+  const [alert, setalert] = useState(false) //Estados para mostrar alerta
 
-  let history = useHistory()
+  let history = useHistory() //Usehistory utilizado para redireccionar en caso de login aceptado.
 
   const redireccionLogin = () => history.push('/MiEquipo')
 
@@ -43,19 +43,19 @@ const FormularioSuscripcion = () => {
     }
   });
 
-  const peticion = async (mail, pass) => {
+  const peticion = (mail, pass) => {
     //Llamado api para validar usuario y contraseña
-    await axios.post(URL, {
+    axios.post(URL, {
       email: mail,
       password: pass
     })
       .then(function (response) {
-        setToken(response.data.token)
         localStorage.setItem('TOKEN', response.data.token)
         redireccionLogin()
       })
       .catch(function (error) {
         console.log(error);
+        setalert(true)
       });
   }
   if (!localStorage.TOKEN) {
@@ -70,6 +70,7 @@ const FormularioSuscripcion = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
+            onClick={() => setalert(false)}
           />
           {formik.touched.email && formik.errors.email ? (
             <div>{formik.errors.email}</div>
@@ -82,6 +83,7 @@ const FormularioSuscripcion = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
+            onClick={() => setalert(false)}
           />
           {formik.touched.password && formik.errors.password ? (
             <div>{formik.errors.password}</div>
@@ -89,7 +91,9 @@ const FormularioSuscripcion = () => {
 
           <button type="submit">Enviar</button>
         </form>
-        <p>{token}</p>
+        {alert ?    //En caso de que haya error en la petición se muestra un alerta
+          <Alert />
+          : null}
       </div>
     );
   }
