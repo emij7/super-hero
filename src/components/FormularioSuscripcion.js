@@ -32,17 +32,6 @@ const FormularioSuscripcion = () => {
 
   const redireccionLogin = () => history.push('/MiEquipo')
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validate,
-    onSubmit: values => {
-      peticion(values.email, values.password)
-    }
-  });
-
   const peticion = (mail, pass) => {
     //Llamado api para validar usuario y contraseña
     axios.post(URL, {
@@ -58,6 +47,21 @@ const FormularioSuscripcion = () => {
         setalert(true)
       });
   }
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validate,
+    onSubmit: values => {
+      peticion(values.email, values.password)
+      if (localStorage.contador === undefined) {
+        localStorage.setItem('contador', 0)
+      }
+    }
+  });
+
   if (!localStorage.TOKEN) {
     return (
       <div>
