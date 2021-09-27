@@ -30,7 +30,7 @@ const validate = values => {
 const FormularioIngreso = () => {
 
   const [alert, setalert] = useState(false) //Estados para mostrar alerta
-  const { setUsuario } = useContext(UsuarioContext) //Trae los valores de useState declarados en usuario context para poder cambiar un valor de forma global
+  const { setUsuario } = useContext(UsuarioContext) //Trae los valores de setState declarados en usuario context para poder cambiar un valor de forma global
 
   let history = useHistory() //Usehistory utilizado para redireccionar en caso de login aceptado.
 
@@ -62,9 +62,7 @@ const FormularioIngreso = () => {
     validate,
     onSubmit: values => {
       peticion(values.email, values.password)
-      if (localStorage.contador === undefined) {
-        localStorage.setItem('contador', 0)
-      }
+
     }
   });
 

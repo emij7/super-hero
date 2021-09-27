@@ -18,7 +18,7 @@ const validate = values => {
     return errors;
 };
 
-const FormularioBuscador = () => {
+const Busqueda = (props) => {
     const url = useContext(ApiContext)
     const [resultadoBusqueda, setResultadoBusqueda] = useState(null)
 
@@ -68,7 +68,7 @@ const FormularioBuscador = () => {
                     null :
 
                     resultadoBusqueda.map(superHeroe => {
-                        return <CajaSuperHeroe nombre={superHeroe.name} imagen={superHeroe.image.url} bando={superHeroe.biography.alignment} key={superHeroe.id} id={superHeroe.id} />
+                        return <CajaSuperHeroe nombre={superHeroe.name} imagen={superHeroe.image.url} bando={superHeroe.biography.alignment} key={superHeroe.id} id={superHeroe.id} usuario={props.usuario} />
                     })
                 }
             </div>
@@ -76,4 +76,4 @@ const FormularioBuscador = () => {
     }
 };
 
-export default FormularioBuscador;
+export default Busqueda;
