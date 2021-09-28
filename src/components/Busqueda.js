@@ -5,6 +5,7 @@ import ApiContext from '../context/ApiContext';
 import axios from 'axios';
 import CajaSuperHeroe from './CajaSuperHeroe';
 import { Redirect } from 'react-router';
+import Cargando from './Cargando';
 
 const validate = values => {
     /*
@@ -21,6 +22,7 @@ const validate = values => {
 const Busqueda = (props) => {
     const url = useContext(ApiContext)
     const [resultadoBusqueda, setResultadoBusqueda] = useState(null)
+    const [cargando, setCargando] = useState(false)
 
     function obtenerHeroes(url) {
         axios.get(url)
@@ -28,6 +30,7 @@ const Busqueda = (props) => {
                 // Manejar éxito
                 const promesa = response
                 setResultadoBusqueda(promesa.data.results)
+                setCargando(false)
             })
             .catch(function (error) {
                 // Manejar error
@@ -43,6 +46,7 @@ const Busqueda = (props) => {
         validate,
         onSubmit: values => {
             obtenerHeroes(`${url}/search/${values.nombre}`)
+            setCargando(true)
         },
     });
 
@@ -64,12 +68,15 @@ const Busqueda = (props) => {
                     {formik.errors.nombre ? <div>{formik.errors.nombre}</div> : null}
                     <button type='submit'>Buscar</button>
                 </form>
-                {resultadoBusqueda == null ?
-                    null :
+                {cargando ?
+                    <Cargando />
+                    : resultadoBusqueda == null ?
+                        null
+                        : resultadoBusqueda.map(superHeroe => {
+                            return <CajaSuperHeroe nombre={superHeroe.name} imagen={superHeroe.image.url} bando={superHeroe.biography.alignment} key={superHeroe.id} id={superHeroe.id} usuario={props.usuario} />
+                        })
 
-                    resultadoBusqueda.map(superHeroe => {
-                        return <CajaSuperHeroe nombre={superHeroe.name} imagen={superHeroe.image.url} bando={superHeroe.biography.alignment} key={superHeroe.id} id={superHeroe.id} usuario={props.usuario} />
-                    })
+
                 }
             </div>
         );

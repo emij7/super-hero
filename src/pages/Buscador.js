@@ -12,9 +12,9 @@ const Buscador = () => {
             <Header />
             <h1>Buscador de heroes</h1>
             <p>Elegí tus heroes para tu equipo o buscá a tu preferido.</p>
+            <Link to='/miEquipo'>Ir a mi Equipo</Link>
             <Busqueda usuario={usuarioActual} />
             elegidos(?)
-            <Link to='/miEquipo'>Ir a mi Equipo</Link>
         </div>
     );
 };

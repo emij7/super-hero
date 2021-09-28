@@ -12,7 +12,9 @@ const CajaSuperHeroe = (props) => {
     }
     const manejoClickQuitar = () => {
         quitarDeEquipo(props.id, props.bando, props.usuario)
-        setagregado(false)
+        if (agregado === true) {
+            setagregado(false)
+        }
     }
     return (
         <div>
