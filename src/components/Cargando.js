@@ -1,8 +1,9 @@
 import React from 'react';
+import '../pages/styles.css'
 
 const Cargando = () => {
     return (
-        <h3>Cargando . . .</h3>
+        <h3 className='text-center cargando m-2'>Cargando . . .</h3>
     );
 };
 

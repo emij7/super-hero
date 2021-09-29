@@ -15,12 +15,12 @@ const validate = values => {
   const errors = {};  //Manejar errores en los input
 
   if (!values.email) {
-    errors.email = 'Required';
+    errors.email = 'Campo obligatorio';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = 'Dirección de e-mail inválida';
   }
   if (!values.password) {
-    errors.password = 'Required';
+    errors.password = 'Campo obligatorio';
   }
   return errors;
 };
@@ -68,9 +68,9 @@ const FormularioIngreso = () => {
 
   if (!localStorage.TOKEN) {
     return (
-      <div>
-        <form onSubmit={formik.handleSubmit}>
-          <label htmlFor="email">Email Address</label>
+      <div className='d-flex align-items-center flex-column'>
+        <form onSubmit={formik.handleSubmit} className='w-75 d-flex flex-column'>
+          <label htmlFor="email">Direccion de e-mail</label>
           <input
             id="email"
             name="email"
@@ -81,9 +81,9 @@ const FormularioIngreso = () => {
             onClick={() => setalert(false)}
           />
           {formik.touched.email && formik.errors.email ? (
-            <div>{formik.errors.email}</div>
+            <div className='text-danger fw-bold'>{formik.errors.email}</div>
           ) : null}
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Contraseña</label>
           <input
             id="password"
             name="password"
@@ -94,10 +94,10 @@ const FormularioIngreso = () => {
             onClick={() => setalert(false)}
           />
           {formik.touched.password && formik.errors.password ? (
-            <div>{formik.errors.password}</div>
+            <div className='text-danger fw-bold'>{formik.errors.password}</div>
           ) : null}
 
-          <button type="submit">Enviar</button>
+          <button className='m-2 w-50 mx-auto btn btn-outline-success' type="submit">Enviar</button>
         </form>
         {alert ?    //En caso de que haya error en la petición se muestra un alerta
           <Alert />

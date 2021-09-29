@@ -6,6 +6,7 @@ import axios from 'axios';
 import CajaSuperHeroe from './CajaSuperHeroe';
 import { Redirect } from 'react-router';
 import Cargando from './Cargando';
+import '../pages/buscador.css'
 
 const validate = values => {
     /*
@@ -14,7 +15,7 @@ const validate = values => {
     const errors = {};  //Manejar errores en los input
 
     if (!values.nombre) {
-        errors.nombre = 'Ingresa algún caracter';
+        errors.nombre = 'Ingresá algún caracter';
     }
     return errors;
 };
@@ -55,29 +56,35 @@ const Busqueda = (props) => {
         return <Redirect to='/' />
     } else {
         return (
-            <div>
+            <div className='w-100'>
                 <form onSubmit={formik.handleSubmit}>
-                    <label htmlFor="nombre">Nombre:</label>
-                    <input
-                        id="nombre"
-                        name="nombre"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.nombre}
-                    />
-                    {formik.errors.nombre ? <div>{formik.errors.nombre}</div> : null}
-                    <button type='submit'>Buscar</button>
+                    <div className='d-flex flex-row justify-content-center align-items-center'>
+                        <label htmlFor="nombre">Nombre:</label>
+                        <input
+                            className='w-50 m-2'
+                            id="nombre"
+                            name="nombre"
+                            type="text"
+                            onChange={formik.handleChange}
+                            value={formik.values.nombre}
+                        />
+                        <button type='submit' className=' btn btn-outline-primary'>Buscar</button>
+                    </div>
+                    {formik.errors.nombre ? <div className='text-danger fw-bold text-center'>{formik.errors.nombre}</div> : null}
                 </form>
-                {cargando ?
-                    <Cargando />
-                    : resultadoBusqueda == null ?
-                        null
-                        : resultadoBusqueda.map(superHeroe => {
-                            return <CajaSuperHeroe nombre={superHeroe.name} imagen={superHeroe.image.url} bando={superHeroe.biography.alignment} key={superHeroe.id} id={superHeroe.id} usuario={props.usuario} />
-                        })
+                <div className='row d-flex justify-content-evenly '>
+                    {cargando ?
+                        <Cargando />
+                        : resultadoBusqueda == null ?
+                            null
+                            : resultadoBusqueda.map(superHeroe => {
+                                return <CajaSuperHeroe nombre={superHeroe.name} imagen={superHeroe.image.url} bando={superHeroe.biography.alignment} key={superHeroe.id} id={superHeroe.id} usuario={props.usuario} />
+                            })
 
 
-                }
+                    }
+                </div>
+
             </div>
         );
     }

@@ -1,0 +1,22 @@
+.login-container {
+  height: 90vh;
+}
+.cargando {
+  animation: cargando 3s infinite both;
+}
+
+@keyframes cargando {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+html,
+body {
+  overflow-x: hidden;
+}

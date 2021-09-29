@@ -3,25 +3,23 @@ const quitarDeEquipo = (id, bando, usuario) => {
         const datos = localStorage.getItem(`${usuario}`)
         let objetoUsuario = JSON.parse(datos)
         objetoUsuario.heroeBueno1 === id ?
-            objetoUsuario.heroeBueno1 = ''
+            objetoUsuario.heroeBueno1 = ""
             : objetoUsuario.heroeBueno2 === id ?
-                objetoUsuario.heroeBueno2 = ''
+                objetoUsuario.heroeBueno2 = ""
                 : objetoUsuario.heroeBueno3 === id ?
-                    objetoUsuario.heroeBueno3 = ''
-                    : console.log('Equipo bueno LLENO')
-        console.log(objetoUsuario)
+                    objetoUsuario.heroeBueno3 = ""
+                    : console.log('Error, no encontrado. Contactar al creador de app')
         localStorage.setItem(`${usuario}`, JSON.stringify(objetoUsuario))
     } else {
         const datos = localStorage.getItem(`${usuario}`)
         let objetoUsuario = JSON.parse(datos)
         objetoUsuario.heroeMalo1 === id ?
-            objetoUsuario.heroeMalo1 = ''
+            objetoUsuario.heroeMalo1 = ""
             : objetoUsuario.heroeMalo2 === id ?
-                objetoUsuario.heroeMalo2 = ''
+                objetoUsuario.heroeMalo2 = ""
                 : objetoUsuario.heroeMalo3 === id ?
-                    objetoUsuario.heroeMalo3 = ''
-                    : console.log('Equipo malo LLENO')
-        console.log(objetoUsuario)
+                    objetoUsuario.heroeMalo3 = ""
+                    : console.log('Error, no encontrado. Contactar al creador de app')
         localStorage.setItem(`${usuario}`, JSON.stringify(objetoUsuario))
     }
 }
