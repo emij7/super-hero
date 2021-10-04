@@ -59,21 +59,21 @@ const DatosMiEquipo = (props) => {
             <div className='mi-equipo__contenedor-equipo'>
                 {heroe4 === null ? null
                     : (
-                        <div className='mi-equipo__contenedor-tarjetas border border-3 rounded border-success p-2 m-2'>
+                        <div className='mi-equipo__contenedor-tarjetas border border-3 rounded border-danger p-2 m-2'>
                             <TarjetaHeroe nombre={heroe4.name} estadisticas={heroe4.powerstats} biografia={heroe4.biography} apariencia={heroe4.appearance} imagen={heroe4.image.url} lugarTrabajo={heroe4.work.base} />
                             <button className='btn btn-danger w-50 m-1 align-items-center' onClick={() => { manejarClickEliminar(heroe4.id, 3); setHeroe4(null) }}>Quitar</button>
                         </div>
                     )}
                 {heroe5 === null ? null
                     : (
-                        <div className='mi-equipo__contenedor-tarjetas border border-3 rounded border-success p-2 m-2'>
+                        <div className='mi-equipo__contenedor-tarjetas border border-3 rounded border-danger p-2 m-2'>
                             <TarjetaHeroe nombre={heroe5.name} estadisticas={heroe5.powerstats} biografia={heroe5.biography} apariencia={heroe5.appearance} imagen={heroe5.image.url} lugarTrabajo={heroe5.work.base} />
                             <button className='btn btn-danger w-50 m-1 align-items-center' onClick={() => { manejarClickEliminar(heroe5.id, 4); setHeroe5(null) }}>Quitar</button>
                         </div>
                     )}
                 {heroe6 === null ? null
                     : (
-                        <div className='mi-equipo__contenedor-tarjetas border border-3 rounded border-success p-2 m-2'>
+                        <div className='mi-equipo__contenedor-tarjetas border border-3 rounded border-danger p-2 m-2'>
                             <TarjetaHeroe nombre={heroe6.name} estadisticas={heroe6.powerstats} biografia={heroe6.biography} apariencia={heroe6.appearance} imagen={heroe6.image.url} lugarTrabajo={heroe6.work.base} />
                             <button className='btn btn-danger w-50 m-1 align-items-center' onClick={() => { manejarClickEliminar(heroe6.id, 5); setHeroe6(null) }}>Quitar</button>
                         </div>

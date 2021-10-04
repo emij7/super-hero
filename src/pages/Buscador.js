@@ -12,9 +12,11 @@ const Buscador = () => {
             <Header />
             <Link to='/miEquipo' className='btn btn-outline-secondary d-block mx-auto' style={{ width: '10rem' }}>Volver al Home</Link>
             <h1 className='text-center m-4'>Buscador de heroes</h1>
-            <p className='text-center'>Buscá a tus super-heroes preferidos.</p>
+            <p className='text-center text-dark'>Buscá a tus super-heroes preferidos.</p>
+            <p className='text-center text-success '>&bull; color borde heroes Buenos</p>
+            <p className='text-center text-danger'>&bull; color borde heroes malos</p>
             <Busqueda usuario={usuarioActual} />
-        </div>
+        </div >
     );
 };
 

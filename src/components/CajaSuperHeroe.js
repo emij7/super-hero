@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import agregarAEquipo from './agreagarAEquipo';
 import quitarDeEquipo from './quitarDeEquipo';
 
 const CajaSuperHeroe = (props) => {
+
+
     const [agregado, setagregado] = useState()
+    const [borde, setBorde] = useState(undefined)
+    useEffect(() => {
+        if (props.bando === 'good') {
+            setBorde('border-success')
+        } else {
+            setBorde('border-danger')
+        }
+    }, [])
+
     const manejoClickAnadir = () => {
         agregarAEquipo(props.id, props.bando, props.usuario)
         if ((localStorage.getItem(`${props.usuario}`).search(`"${props.id}"`) !== -1)) {
@@ -17,7 +29,7 @@ const CajaSuperHeroe = (props) => {
         }
     }
     return (
-        <div className='col-md-5 d-flex flex-row align-items-center border border-3 rounded border-success p-1 justify-content-between m-1 ' style={{ maxWidth: '90vw' }}>
+        <div className={`col-md-5 d-flex flex-row align-items-center border border-3 rounded ${borde} p-1 justify-content-between m-1`} style={{ maxWidth: '90vw' }}>
             <div style={{ height: '25vh' }} className='align-middle'>
                 <img src={props.imagen} alt="Imágen Super-heroe" className='img-fluid h-100 ' />
             </div>

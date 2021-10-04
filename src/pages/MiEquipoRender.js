@@ -49,7 +49,7 @@ const MiEquipoRender = () => {
                 <Header />
                 <Link to='busqueda' className='btn btn-outline-secondary d-block mx-auto' style={{ width: '10rem' }}>Buscar heroes!</Link>
                 <h1 className='text-center m-4'>¡Mi equipo!</h1>
-                <h6 className='text-center m-4'>Aquí encontrarás estadísticas y tu equipo. Recuerda que puedes elegir 3 super-heroes buenos y 3 malos.</h6>
+                <h6 className='text-center m-4 text-dark'>Aquí encontrarás estadísticas y tu equipo. Recuerda que puedes elegir 3 super-heroes buenos y 3 malos.</h6>
                 {loading === true ?
                     <Cargando />
                     :
