@@ -43,10 +43,10 @@ const FormularioIngreso = () => {
       password: pass
     })
       .then(function (response) {
-        localStorage.setItem('TOKEN', response.data.token)
-        redireccionLogin() //Login aceptado
         setUsuario(mail)
         validacionUsuario(mail)
+        localStorage.setItem('TOKEN', response.data.token)
+        redireccionLogin() //Login aceptado
       })
       .catch(function (error) {
         console.log(error);

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 
 const TarjetaHeroe = (props) => {
-    const [verDetalles, setVerDetalles] = useState(false)
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
 

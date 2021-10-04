@@ -13,7 +13,7 @@ import './miEquipo.css'
 
 
 
-const MiEquipo = () => {
+const MiEquipoRender = () => {
     const usuarioActual = useContext(UsuarioContext).usuario
     const misHeroesID = obtenerHeroes(usuarioActual)
     const url = useContext(ApiContext)
@@ -62,4 +62,4 @@ const MiEquipo = () => {
 
 }
 
-export default MiEquipo;
+export default MiEquipoRender;
