@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/super-hero/static/css/main.f0693749.chunk.css",
+    "main.js": "/super-hero/static/js/main.8796be0c.chunk.js",
+    "main.js.map": "/super-hero/static/js/main.8796be0c.chunk.js.map",
+    "runtime-main.js": "/super-hero/static/js/runtime-main.0ff92640.js",
+    "runtime-main.js.map": "/super-hero/static/js/runtime-main.0ff92640.js.map",
+    "static/css/2.53150396.chunk.css": "/super-hero/static/css/2.53150396.chunk.css",
+    "static/js/2.81fb96dd.chunk.js": "/super-hero/static/js/2.81fb96dd.chunk.js",
+    "static/js/2.81fb96dd.chunk.js.map": "/super-hero/static/js/2.81fb96dd.chunk.js.map",
+    "static/js/3.daa73849.chunk.js": "/super-hero/static/js/3.daa73849.chunk.js",
+    "static/js/3.daa73849.chunk.js.map": "/super-hero/static/js/3.daa73849.chunk.js.map",
+    "index.html": "/super-hero/index.html",
+    "static/css/2.53150396.chunk.css.map": "/super-hero/static/css/2.53150396.chunk.css.map",
+    "static/css/main.f0693749.chunk.css.map": "/super-hero/static/css/main.f0693749.chunk.css.map",
+    "static/js/2.81fb96dd.chunk.js.LICENSE.txt": "/super-hero/static/js/2.81fb96dd.chunk.js.LICENSE.txt",
+    "static/media/blackFist.3db0e8e6.png": "/super-hero/static/media/blackFist.3db0e8e6.png",
+    "static/media/whiteFist.7a7025a0.png": "/super-hero/static/media/whiteFist.7a7025a0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0ff92640.js",
+    "static/css/2.53150396.chunk.css",
+    "static/js/2.81fb96dd.chunk.js",
+    "static/css/main.f0693749.chunk.css",
+    "static/js/main.8796be0c.chunk.js"
+  ]
+}
