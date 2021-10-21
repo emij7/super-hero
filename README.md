@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Super-app
+Aplicación para buscar super-heroes y elegir 6 de ellos para sumarlos a tu equipo.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Descripción
+### Login
+Para ingresar necesitas un usuario y contraseña. La solicitud se envía a una API de Alkemy.
+El formulario está validado con formik, necesitas ingresar un e-mail y pass válidos enviar la solicitud a la API.
 
-In the project directory, you can run:
+Las credenciales correctas para ingresar son:
+Usuario: challenge@alkemy.org
+Pass: react
 
-### `npm start`
+### Buscador
+Esta sección es donde tenemos un input para buscar los super-heroes que querramos agregar a nuestro equipo.
+El input también está validado con formik. Al menos debemos escribir una letra para hacer la solicitud a la API.
+La petición se realiza a la API de https://superheroapi.com/ 
+Los resultados se obtienen diferenciados por su borde. Tienen borde verde los super-heroes buenos y los malos un borde rojo.
+Cada caja de super-heroe viene con un boton para agregar a el equipo, si el equipo correspondiente está lleno nos aparece una alerta.
+Cuando un heroe es agregado, automáticamente nos aparece el botón de "Quitar".
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Mi equipo
+Aquí encontramos los heroes que hemos agregado y sus estadísticas.
+Podemos ver un cuadro con las estadísticas totales del equipo y cual es la estadística que predomina.
+En esta sección también podemos eliminar heroes del equipo.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+### Finalidad
+Esta app fue creada principalmente como un challenge para poder ingresar a Alkemy.
+El proyecto fue aprobado y su login modificado para poder mostrarlo en GH-PAGES.
+Puedes probar como funciona desde aquí: 
+https://emij7.github.io/super-app/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
