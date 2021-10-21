@@ -1,6 +1,14 @@
 # Super-app
 Aplicación para buscar super-heroes y elegir 6 de ellos para sumarlos a tu equipo.
 
+## Tecnologías
+Creado usando react.js
+Librerías:
+- React-router
+- Formik
+- Axios
+- Bootstrap
+- Reactjs-popup
 
 ## Descripción
 ### Login
@@ -22,7 +30,7 @@ Cuando un heroe es agregado, automáticamente nos aparece el botón de "Quitar".
 ### Mi equipo
 Aquí encontramos los heroes que hemos agregado y sus estadísticas.
 Podemos ver un cuadro con las estadísticas totales del equipo y cual es la estadística que predomina.
-En esta sección también podemos eliminar heroes del equipo.
+En esta sección también podemos eliminar heroes del equipo o ver los detalles de cada heroe.
 
 
 ### Finalidad
