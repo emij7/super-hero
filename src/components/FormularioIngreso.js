@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useHistory, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Alert from './Alert';
-import UsuarioContext from '../context/UsuarioContext';
-import validacionUsuario from './validacionUsuario'
+// import UsuarioContext from '../context/UsuarioContext';
+// import validacionUsuario from './validacionUsuario'
 
 const URL = 'http://challenge-react.alkemy.org/'
 
@@ -30,7 +30,7 @@ const validate = values => {
 const FormularioIngreso = () => {
 
   const [alert, setalert] = useState(false) //Estados para mostrar alerta
-  const { setUsuario } = useContext(UsuarioContext) //Trae los valores de setState declarados en usuario context para poder cambiar un valor de forma global
+  // const { setUsuario } = useContext(UsuarioContext) //Trae los valores de setState declarados en usuario context para poder cambiar un valor de forma global
 
   let history = useHistory() //Usehistory utilizado para redireccionar en caso de login aceptado.
 
@@ -43,8 +43,6 @@ const FormularioIngreso = () => {
       password: pass
     })
       .then(function (response) {
-        setUsuario(mail)
-        validacionUsuario(mail)
         localStorage.setItem('TOKEN', response.data.token)
         redireccionLogin() //Login aceptado
       })

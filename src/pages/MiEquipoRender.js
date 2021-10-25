@@ -9,13 +9,16 @@ import obtenerHeroes from '../components/obtenerHeroes';
 import ApiContext from '../context/ApiContext';
 import UsuarioContext from '../context/UsuarioContext';
 import './miEquipo.css'
+import { useSelector } from 'react-redux'
+
 
 
 
 
 const MiEquipoRender = () => {
+    const team = useSelector(team => team)
     const usuarioActual = useContext(UsuarioContext).usuario
-    const misHeroesID = obtenerHeroes(usuarioActual)
+    const misHeroesID = obtenerHeroes(team)
     const url = useContext(ApiContext)
     const [loading, setloading] = useState(true)
     const [datos, setdatos] = useState([])
@@ -39,6 +42,7 @@ const MiEquipoRender = () => {
             setloading(false)
         }
         recoleccionDeDatos()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if (!localStorage.TOKEN) {

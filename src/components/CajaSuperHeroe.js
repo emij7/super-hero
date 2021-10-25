@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import agregarAEquipo from './agreagarAEquipo';
-import quitarDeEquipo from './quitarDeEquipo';
+import { useDispatch, useSelector } from 'react-redux'
+import { addHero, removeHero } from '../reducers/heroReducer'
+
 
 const CajaSuperHeroe = (props) => {
-
-
-    const [agregado, setagregado] = useState()
+    const dispatch = useDispatch()
+    const team = useSelector(team => team)
     const [borde, setBorde] = useState(undefined)
     useEffect(() => {
         if (props.bando === 'good') {
@@ -17,16 +17,10 @@ const CajaSuperHeroe = (props) => {
     }, [])
 
     const manejoClickAnadir = () => {
-        agregarAEquipo(props.id, props.bando, props.usuario)
-        if ((localStorage.getItem(`${props.usuario}`).search(`"${props.id}"`) !== -1)) {
-            setagregado(true)
-        }
+        dispatch(addHero(props.id, props.bando))
     }
     const manejoClickQuitar = () => {
-        quitarDeEquipo(props.id, props.bando, props.usuario)
-        if ((localStorage.getItem(`${props.usuario}`).search(`"${props.id}"`) === -1)) {
-            setagregado(false)
-        }
+        dispatch(removeHero(props.id, props.bando))
     }
     return (
         <div className={`col-md-5 d-flex flex-row align-items-center border border-3 rounded ${borde} p-1 justify-content-between m-1`} style={{ maxWidth: '90vw' }}>
@@ -34,7 +28,7 @@ const CajaSuperHeroe = (props) => {
                 <img src={props.imagen} alt="Imágen Super-heroe" className='img-fluid h-100 ' />
             </div>
             <p className='fw-bold'>{props.nombre}</p>
-            {(localStorage.getItem(`${props.usuario}`).search(`"${props.id}"`) === -1) ?
+            {(Object.values(team).indexOf(props.id) < 0) ?
                 <button className='btn btn-success' onClick={() => manejoClickAnadir()}>Agregar</button>
                 : <button className=" btn btn-danger" onClick={() => manejoClickQuitar()}>Quitar</button>
             }

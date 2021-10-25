@@ -1,9 +1,7 @@
-const obtenerHeroes = (usuario) => {
-    const datos = localStorage.getItem(`${usuario}`)
-    let objetoUsuario = JSON.parse(datos)
+const obtenerHeroes = (objeto) => {
     let listado = []
-    listado.push(objetoUsuario.heroeBueno1, objetoUsuario.heroeBueno2, objetoUsuario.heroeBueno3, objetoUsuario.heroeMalo1, objetoUsuario.heroeMalo2, objetoUsuario.heroeMalo3)
+    listado.push(objeto.heroeBueno1, objeto.heroeBueno2, objeto.heroeBueno3, objeto.heroeMalo1, objeto.heroeMalo2, objeto.heroeMalo3)
     return listado
-    // localStorage.setItem(`${usuario}`, JSON.stringify(objetoUsuario))
+    // localStorage.setItem(`${usuario}`, JSON.stringify(objeto))
 }
 export default obtenerHeroes
