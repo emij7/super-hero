@@ -56,18 +56,20 @@ const Busqueda = (props) => {
         <div className='w-100'>
             <form onSubmit={formik.handleSubmit}>
                 <div className='d-flex flex-row justify-content-center align-items-center'>
-                    <label htmlFor="nombre">Nombre:</label>
+                    <label htmlFor="nombre">Nombre</label>
                     <input
                         className='w-50 m-2'
                         id="nombre"
                         name="nombre"
                         type="text"
+                        aria-errormessage='msgID'
+                        aria-invalid='true'
                         onChange={formik.handleChange}
                         value={formik.values.nombre}
                     />
                     <button type='submit' className=' btn btn-outline-primary'>Buscar</button>
                 </div>
-                {formik.errors.nombre ? <div className='text-danger fw-bold text-center'>{formik.errors.nombre}</div> : null}
+                {formik.errors.nombre ? <div id='msgID' className='text-danger fw-bold text-center'>{formik.errors.nombre}</div> : null}
             </form>
             <div className='row d-flex justify-content-evenly '>
                 {cargando ?
