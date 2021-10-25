@@ -9,13 +9,16 @@ import obtenerHeroes from '../components/obtenerHeroes';
 import ApiContext from '../context/ApiContext';
 import UsuarioContext from '../context/UsuarioContext';
 import './miEquipo.css'
+import { useSelector } from 'react-redux'
+
 
 
 
 
 const MiEquipoRender = () => {
+    const team = useSelector(team => team)
     const usuarioActual = useContext(UsuarioContext).usuario
-    const misHeroesID = obtenerHeroes(usuarioActual)
+    const misHeroesID = obtenerHeroes(team)
     const url = useContext(ApiContext)
     const [loading, setloading] = useState(true)
     const [datos, setdatos] = useState([])
@@ -39,16 +42,17 @@ const MiEquipoRender = () => {
             setloading(false)
         }
         recoleccionDeDatos()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if (!localStorage.TOKEN) {
         return <Redirect to='/' />
     } else {
         return (
-            <div className='mi-equipo__contenedor'>
+            <div className='mi-equipo__contenedor' id='team'>
                 <Header />
                 <Link to='busqueda' className='btn btn-outline-secondary d-block mx-auto' style={{ width: '10rem' }}>Buscar heroes!</Link>
-                <h1 className='text-center m-4'>¡Mi equipo!</h1>
+                <h1 className='text-center m-4'>Mi equipo</h1>
                 <h6 className='text-center m-4 text-dark'>Aquí encontrarás estadísticas y tu equipo. Recuerda que puedes elegir 3 super-heroes buenos y 3 malos.</h6>
                 {loading === true ?
                     <Cargando />

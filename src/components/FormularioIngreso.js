@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useHistory, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Alert from './Alert';
-import UsuarioContext from '../context/UsuarioContext';
-import validacionUsuario from './validacionUsuario'
+// import UsuarioContext from '../context/UsuarioContext';
+// import validacionUsuario from './validacionUsuario'
 
 const URL = 'http://challenge-react.alkemy.org/'
 
@@ -15,12 +15,12 @@ const validate = values => {
   const errors = {};  //Manejar errores en los input
 
   if (!values.email) {
-    errors.email = 'Campo obligatorio';
+    errors.email = 'E-mail obligatorio';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Dirección de e-mail inválida';
   }
   if (!values.password) {
-    errors.password = 'Campo obligatorio';
+    errors.password = 'Password obligatorio';
   }
   return errors;
 };
@@ -30,7 +30,7 @@ const validate = values => {
 const FormularioIngreso = () => {
 
   const [alert, setalert] = useState(false) //Estados para mostrar alerta
-  const { setUsuario } = useContext(UsuarioContext) //Trae los valores de setState declarados en usuario context para poder cambiar un valor de forma global
+  // const { setUsuario } = useContext(UsuarioContext) //Trae los valores de setState declarados en usuario context para poder cambiar un valor de forma global
 
   let history = useHistory() //Usehistory utilizado para redireccionar en caso de login aceptado.
 
@@ -43,14 +43,12 @@ const FormularioIngreso = () => {
       password: pass
     })
       .then(function (response) {
-        setUsuario(mail)
-        validacionUsuario(mail)
         localStorage.setItem('TOKEN', response.data.token)
         redireccionLogin() //Login aceptado
       })
       .catch(function (error) {
-        console.log(error);
         setalert(true)
+        console.log(error);
       });
   }
 
@@ -70,23 +68,27 @@ const FormularioIngreso = () => {
     return (
       <div className='d-flex align-items-center flex-column'>
         <form onSubmit={formik.handleSubmit} className='w-75 d-flex flex-column'>
-          <label htmlFor="email">Direccion de e-mail</label>
+          <label htmlFor="email">Direccion de correo </label>
           <input
             id="email"
             name="email"
             type="email"
+            aria-errormessage='msgID'
+            aria-invalid='true'
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
             onClick={() => setalert(false)}
           />
           {formik.touched.email && formik.errors.email ? (
-            <div className='text-danger fw-bold'>{formik.errors.email}</div>
+            <div id='msgID' className='text-danger fw-bold'>{formik.errors.email}</div>
           ) : null}
           <label htmlFor="password">Contraseña</label>
           <input
             id="password"
             name="password"
+            aria-errormessage='msgID2'
+            aria-invalid='true'
             type="password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -94,7 +96,7 @@ const FormularioIngreso = () => {
             onClick={() => setalert(false)}
           />
           {formik.touched.password && formik.errors.password ? (
-            <div className='text-danger fw-bold'>{formik.errors.password}</div>
+            <div id='msgID2' className='text-danger fw-bold'>{formik.errors.password}</div>
           ) : null}
 
           <button className='m-2 w-50 mx-auto btn btn-outline-success' type="submit">Enviar</button>

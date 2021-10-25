@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import CajaEstadisticas from './CajaEstadisticas';
 import calcularMayorEstadistica from './calcularMayorEstadistica';
 import promedioPesoAltura from './promedioPesoAltura';
-import quitarDeEquipo from './quitarDeEquipo';
 import sumaStats from './sumaStats';
 import TarjetaHeroe from './TarjetaHeroe';
+import { useDispatch } from 'react-redux'
+import { removeHero } from '../reducers/heroReducer';
+
 
 const DatosMiEquipo = (props) => {
+    // const team = useSelector(team => team)
+    const dispatch = useDispatch()
     const [heroe1, setHeroe1] = useState(props.datos[0].response === 'success' ? props.datos[0] : null)
     const [heroe2, setHeroe2] = useState(props.datos[1].response === 'success' ? props.datos[1] : null)
     const [heroe3, setHeroe3] = useState(props.datos[2].response === 'success' ? props.datos[2] : null)
@@ -26,8 +30,9 @@ const DatosMiEquipo = (props) => {
 
     const manejarClickEliminar = (id, numeroHeroe) => {
         numeroHeroe < 3 ?
-            quitarDeEquipo(id, 'good', props.usuario)
-            : quitarDeEquipo(id, 'noGood', props.usuario)
+            dispatch(removeHero(id, 'good'))
+            : dispatch(removeHero(id, 'bad'))
+
     }
     return (
         <div className='mi-equipo__contenedor'>
